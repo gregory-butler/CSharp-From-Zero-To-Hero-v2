@@ -79,15 +79,15 @@ namespace CredentialsManager
       do
       {
         pressedKey = Console.ReadKey(true).Key;
-        if (!MainMenu.IsValidKey(pressedKey))
+        if (MainMenu[pressedKey] is null)
         {
           Console.WriteLine(InvalidOptionMessage);
           Pause();
           return;
         }
 
-        ConsoleInit(MainMenu[pressedKey].Label);
-        MainMenu[pressedKey].Action?.Invoke();
+        ConsoleInit(MainMenu[pressedKey]?.Label);
+        MainMenu[pressedKey]?.Action?.Invoke();
         Pause();
         return;
       } while (MainMenu.ExitItem.ConsoleKeys.Contains(pressedKey));

@@ -17,20 +17,7 @@ namespace CredentialsManager.Models
       ExitItem = exitItem;
     }
 
-    public bool IsValidKey(ConsoleKey consoleKey)
-    {
-      foreach (var item in MenuItems)
-      {
-        if (item.ConsoleKeys.Contains(consoleKey))
-        {
-          return true;
-        }
-      }
-
-      return ExitItem.ConsoleKeys.Contains(consoleKey);
-    }
-
-    public MenuItem this[ConsoleKey consoleKey]
+    public MenuItem? this[ConsoleKey consoleKey]
     {
       get
       {
@@ -42,9 +29,7 @@ namespace CredentialsManager.Models
           }
         }
 
-        if (ExitItem.ConsoleKeys.Contains(consoleKey)) return ExitItem;
-
-        return null;
+        return ExitItem.ConsoleKeys.Contains(consoleKey) ? ExitItem : null;
       }
     }
 
